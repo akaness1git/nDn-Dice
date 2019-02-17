@@ -8,7 +8,7 @@ split_pattern = 'd|D'
 # 対象の文字列かどうか
 def judge_nDn(src):
     repatter = re.compile(pattern)
-    result = repatter.match(src)
+    result = repatter.fullmatch(src)
     if result is not None:
         return True
     return False
