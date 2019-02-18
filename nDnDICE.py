@@ -2,8 +2,6 @@
 import random
 import re
 
-text = '1d100'
-
 pattern = '\d{1,2}d\d{1,3}|\d{1,2}D\d{1,3}'
 split_pattern = 'd|D'
 
@@ -12,6 +10,8 @@ def judge_nDn(src):
     repatter = re.compile(pattern)
     result = repatter.fullmatch(src)
     if result is not None:
+        return True
+    elif src == '1d114514' or src == '1D114514':
         return True
     return False
 
@@ -32,15 +32,16 @@ def role_nDn(src):
         result.append(tmp)
         sum_dice = sum_dice + tmp
     
-    return result,sum_dice
+    is1dice = True if role_count == 1 else False
+    
+    return result,sum_dice,is1dice
 
-def main():
+def nDn(text):
     if judge_nDn(text):
-        result,sum_dice = role_nDn(text)
-        print('内訳：' + str(result))
-        print('合計：' + str(sum_dice))
+        result,sum_dice,is1dice = role_nDn(text)
+        if is1dice:
+            return 'ダイス：' + text + '\n出目：' + str(sum_dice)
+        else:
+            return 'ダイス：' + text + '\n出目：' + str(result) + '\n合計：' + str(sum_dice)
     else:
-        print("対象外")
-
-if __name__ == "__main__":
-    main()
+        return None
