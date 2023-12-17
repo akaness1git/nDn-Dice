@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ymorishima030-method"
+name = "nDnDICE"
 authors = [
     {name = "Deize", email = "morisi3160@gmail.com"},
 ]
